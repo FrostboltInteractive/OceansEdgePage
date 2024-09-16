@@ -1,3 +1,5 @@
+//this is just for dev control
+
 function updateLoop() {
     checkMainServerRunning();
     updateServerTable();
@@ -20,16 +22,15 @@ function startMainServer() {
 
 }
 
-function updateMainServerIP() {
+function getServerList() {
     const filePath = '../MainServerIP.txt';
-    const newText = 'Your new text content';
 
-    fetch('http://localhost:5000/update-text', {
-        method: 'POST',
+    fetch('api.oceansedge.frostboltinteractive.com/api/getServerList', {
+        method: 'GET',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ file_path: filePath, new_text: newText })
+        body: JSON.stringify({ file_path: filePath})
     })
     .then(response => response.json())
     .then(data => {
