@@ -13,14 +13,25 @@
                 <th>Server</th>
                 <th>IP</th>
                 <th>Port</th>
-                <th>Status</th>
-                <th>Actions</th>
+                <th>Player Count</th>
+                <th>Ship Count</th>
             </tr>
             <tr>
-            
+                
             </tr>
-            <h2>Main Server Control interface</h2>
-            <label for="cmd">Run Command</label>
-            <input type="text" id="cmd">
+        </table>
+        <h2>Main Server Status</h2>
+        <p>Server is currently running</p>
+        <p>Server ip: </p>
+        <p>Server port: </p>
+        <h2>Main Server Control interface</h2>
+        <label for="cmd">Run Command</label>
+        <input type="text" id="cmd">
+        <button id="run">Run</button>
+        <button onclick="startMainServer()">Start Server</button>
+        <button onclick="stopMainServer()">Stop Server</button>
+        <h2>Game Server Control interface</h2>
+        <label for="id">Select ID</label>
+        <input type="dropdown" id="id">
     </body>
 </html>
