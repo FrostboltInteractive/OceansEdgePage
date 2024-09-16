@@ -25,7 +25,7 @@ function startMainServer() {
 function getServerList() {
     const filePath = '../MainServerIP.txt';
 
-    fetch('api.oceansedge.frostboltinteractive.com/api/getServerList', {
+    fetch('https://api.oceansedge.frostboltinteractive.com/api/getServerList', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
