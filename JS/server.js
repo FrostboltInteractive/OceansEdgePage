@@ -30,7 +30,6 @@ function getServerList() {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ file_path: filePath})
     })
     .then(response => response.json())
     .then(data => {
