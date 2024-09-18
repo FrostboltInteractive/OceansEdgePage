@@ -6,29 +6,7 @@
     <title>API Client</title>
 </head>
 <body>
-    <h1>Server Management</h1>
-    <button id="getServerListBtn">Get Server List</button>
-    <button id="updateIPBtn">Update IP</button>
-    <pre id="output"></pre>
-
-    <script>
-        document.getElementById('getServerListBtn').addEventListener('click', () => {
-            fetch('/api/getServerList')
-                .then(response => response.json())
-                .then(data => {
-                    document.getElementById('output').textContent = JSON.stringify(data, null, 2);
-                })
-                .catch(error => console.error('Error:', error));
-        });
-
-        document.getElementById('updateIPBtn').addEventListener('click', () => {
-            fetch('/api/updateIP')
-                .then(response => response.json())
-                .then(data => {
-                    document.getElementById('output').textContent = JSON.stringify(data, null, 2);
-                })
-                .catch(error => console.error('Error:', error));
-        });
-    </script>
+    
+    
 </body>
 </html>
