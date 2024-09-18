@@ -36,7 +36,7 @@ function getServerList() {
     .then(data => {
         if (data.error) {
             console.error('Error:', data.error);
-        } else {f'Success:', data.message);
+        } else {'Success:', data.message);
         }
     })
     .catch((error) => {
