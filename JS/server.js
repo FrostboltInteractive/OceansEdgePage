@@ -23,7 +23,10 @@ function startMainServer() {
 }
 
 function getServerList() {
-    fetch('https://api.oceansedge.frostboltinteractive.com/getServerList', {
+    const corsProxy = 'https://cors-anywhere.herokuapp.com/';
+    const targetUrl = 'https://api.oceansedge.frostboltinteractive.com/getServerList';
+
+    fetch(corsProxy + targetUrl, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
@@ -33,8 +36,7 @@ function getServerList() {
     .then(data => {
         if (data.error) {
             console.error('Error:', data.error);
-        } else {
-            console.log('Success:', data.message);
+        } else {f'Success:', data.message);
         }
     })
     .catch((error) => {
