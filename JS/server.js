@@ -23,7 +23,7 @@ function startMainServer() {
 }
 
 function getServerList() {
-    fetch('https://api.oceansedge.frostboltinteractive.com/getServerList', {
+    fetch('http://api.oceansedge.frostboltinteractive.com/getServerList', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
