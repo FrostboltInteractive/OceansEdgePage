@@ -23,7 +23,7 @@ function startMainServer() {
 }
 
 function getServerList() {
-    const corsProxy = 'https://api.allorigins.win/get?url=';
+    const corsProxy = 'https://cors-anywhere.herokuapp.com/';
     const targetUrl = encodeURIComponent('https://api.oceansedge.frostboltinteractive.com/getServerList');
 
     fetch(corsProxy + targetUrl, {
@@ -36,7 +36,9 @@ function getServerList() {
     .then(data => {
         if (data.error) {
             console.error('Error:', data.error);
-        } else {'Success:', data.message};
+        } else {
+            console.log('Success:', data.message);
+        }
     })
     .catch((error) => {
         console.error('Error:', error);
