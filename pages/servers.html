@@ -7,18 +7,25 @@
         <title>Control interface</title>
         <script src="../JS/server.js"></script>
     </head>
-    <body>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            text-align: center;
+        }
+    </style>
+    <body onload="updateLoop()">
+        <h1>Server Controller</h1>
         <h2>Currently Running Game Servers</h2>
-        <table>
+        <table id="serverTable" style="border: 1px solid black;">
             <tr>
-                <th>Server</th>
                 <th>IP</th>
                 <th>Port</th>
-                <th>Player Count</th>
-                <th>Ship Count</th>
-            </tr>
-            <tr>
-                
+                <th>Status</th>
+                <th>Region</th>
+                <th>PlayerCount</th>
+                <th>ShipCount</th>
+                <th>ServerID</th>
+                <th>MachineID</th>
             </tr>
         </table>
         <h2>Main Server Status</h2>
