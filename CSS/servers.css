@@ -1,0 +1,49 @@
+* {
+    color: #1165ff;
+    text-align: center;
+}
+
+table, th, td {
+    border: 1px solid navy;
+    text-align: center;
+} 
+
+table {
+    width: 25vw;
+}
+
+#servers {
+    margin-left: 20vw;
+    margin-right: 10vw;
+}
+
+#con {
+    display: flex;
+}
+
+h2, h1 {
+    text-align: center;
+}
+
+body {
+    background-color: black;
+}
+
+#cmdData {
+    display: block;
+    margin-left: 47.3vw;
+    width: 6.75vw;
+    margin-top: 5px;
+    resize: none;
+    background-color: gray;
+}
+
+#game {
+    display: inline;
+}
+
+#mac {
+    display: inline;
+    margin-right: 32vw;
+}
+

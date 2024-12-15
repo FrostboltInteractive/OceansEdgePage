@@ -1,88 +1,67 @@
 //this is just for dev control
 
 function updateLoop() {
-    checkMainServerRunning();
-    updateServerTable();
+    checkAPIServerRunning();
+    checkDBServerRunning();
+    updateGameServerTable();
+    updateMachineTable();
     setTimeout(updateLoop, 60000);
 }
 
-function updateServerTable() {
-    getServerList().then(data => {
-        var table = document.getElementById('serverTable'); 
-        while(table.childElementCount > 1) {
-            table.removeChild(table.lastChild);
-        }
-        var tr = document.createElement('tr');
-        for (var i = 0; i < data.length; i++) {
-            var ip = data[i].ip;
-            var port = data[i].port;
-            var status = data[i].status;
-            var region = data[i].region;
-            var playerCount = data[i].playerCount;
-            var shipCount = data[i].shipCount;
-            var serverID = data[i].serverID;
-            var machineID = data[i].machineID;
-            var tdIP = document.createElement('td');
-            var tdPort = document.createElement('td');
-            var tdStatus = document.createElement('td');
-            var tdRegion = document.createElement('td');
-            var tdPlayerCount = document.createElement('td');
-            var tdShipCount = document.createElement('td');
-            var tdServerID = document.createElement('td');
-            var tdMachineID = document.createElement('td');
-            tdIP.innerHTML = ip;
-            tdPort.innerHTML = port;
-            tdStatus.innerHTML = status;
-            tdRegion.innerHTML = region;
-            tdPlayerCount.innerHTML = playerCount;
-            tdShipCount.innerHTML = shipCount;
-            tdServerID.innerHTML = serverID;
-            tdMachineID.innerHTML = machineID;
-            tr.appendChild(tdIP);
-            tr.appendChild(tdPort);
-            tr.appendChild(tdStatus);
-            tr.appendChild(tdRegion);
-            tr.appendChild(tdPlayerCount);
-            tr.appendChild(tdShipCount);
-            tr.appendChild(tdServerID);
-            tr.appendChild(tdMachineID);
-            table.appendChild(tr);
-        }
-        table.appendChild(tr);
-    }).catch(error => {
-        console.error('Error:', error);
-    });
+function updateGameServerTable() {
+    data = run("getServerList", "GET", true);
+    console.log("Gameserver data:" + data);
+
+    //update table
 }
 
-function checkMainServerRunning() {
+function updateMachineTable() {
+    data = run("getMachineList", "GET", true);
+    console.log("Machine data:" + data);
 
+    //update table
+
+}   
+
+function checkAPIServerRunning() {  
+    data = run("checkLife", "GET", true);
+
+    //update the ui with the status
 }
 
-function stopMainServer() {
+function checkDBServerRunning() {
+    data = run("checkLifeDB", "GET", true);
 
+    //update the ui with the status
 }
 
-function startMainServer() {
-
+async function runCmd() {
+    var cmd = document.getElementById("cmd").value;
+    if(cmd == "getServerList") {
+        data = await run("getServerList", "GET", true);
+        console.log("Command Data:" + data);
+        document.getElementById("cmdData").innerHTML = data;
+    } else if(cmd == "getMachineList") {
+        return run("getMachineList", "GET", true);
+    }
 }
 
-function getServerList() {
-    const corsProxy = 'https://api.allorigins.win/get?url=';
-    const targetUrl = encodeURIComponent('https://api.oceansedge.frostboltinteractive.com/getServerList');
+async function run(cmd, meth, dataRet) {
+    const APIURL = "https://api.oceansedge.frostboltinteractive.com/"
 
-    return fetch(corsProxy + targetUrl, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json'
-        },
+    return fetch(APIURL + cmd, {
+        method: meth,
     })
     .then(response => response.json())
     .then(data => {
+        console.log('Data:', data);
         if (data.contents) {
-            console.log('Data:', data.contents);
+
             return JSON.parse(data.contents);
         } else {
-            throw new Error('No contents in response');
+            if(dataRet) {
+                console.log("No data returned");
+            }
         }
     })
     .catch((error) => {
@@ -90,3 +69,4 @@ function getServerList() {
         throw error;
     });
 }
+
